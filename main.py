@@ -1,67 +1,119 @@
-#Elite Calculator 2.0
-print("Welcome to Elite Calculator 2.0") 
-userAnswer = None
-while userAnswer != "X":
-    print("Press 1 for addition")
-    print("Press 2 for subtraction")
-    print("Press 3 for multiplication")
-    print("Press 4 for division")
-    print("Press 5 for parallelepiped volume calculation")
-    print("Press 6 for rounding")
-    print("Press 7 for binary")
-    print("Press 8 for parallelogram calculation")
-    print("Press 9 for Gauss sum formula")
-    print("Press X to cancel")
-    userAnswer = input("Type your answer here: ")
-    if userAnswer == "1":
-        term1 = int(input("What is number one?"))
-        term2 = int(input("What is number two?"))
-        ammount = term1 + term255
-        print("The ammount is", ammount)
-    elif userAnswer == "2":
-        num1 = int(input("What is number one?"))
-        num2 = int(input("What is number two?"))
-        difference = num1 - num2
-        print("The difference is", difference)
-    elif userAnswer == "3":
-        factor1 = int(input("What is number one?"))
-        factor2 = int(input("What is number two?"))
-        result = factor1 * factor2
-        print("The result of the multiplication is", result)
-    elif userAnswer == "4":
-        num1 = int(input("What is number one?"))
-        num2 = int(input("What is number two?"))
-        result = num1 / num2
-        print("The result of the division is", result)
-    elif userAnswer == "5":
-        num1 = int(input("What is number one?"))
-        num2 = int(input("What is number two?"))
-        num3 = int(input("What is number three?"))
-        volume = num1*num2*num3
-        print("The volume is", volume)
-    elif userAnswer == "6":
-        number = float(input("What is the number?"))
-        roundedNumber = round(number)
-        print("The number is now", roundedNumber)
-    elif userAnswer == "7":
-        number = int(input("What number do you want to convert to binary?"))
-        answer = bin(number)
-        print("Your answer is", answer)
-    elif userAnswer == "8":
-        lat1 = int(input("what number is the first angle proportional to?"))
-        lat2 = int(input("what number is the second angle proportional to?"))
-        lat3 = int(input("what number is the third angle proportional to?"))
-        lat4 = int(input("what number is the fourth angle proportional to?"))
-        proportionality = lat1+lat2+lat3+lat4
-        k = 360/proportionality
-        print("The first angle is", lat1*k ,"degrees")
-        print("The second angle is", lat2*k ,"degrees")
-        print("The third side is", lat3*k, "degrees")
-        print("The fourth side is", lat4*k, "degrees")
-    elif userAnswer == "9":
-        num1 = int(input("What is the last number of the Gauss sum?"))
-        num2 = num1 + 1
-        answer = num1*num2/2
-        print("Your answer is", answer)
-    elif userAnswer == "X":
-        print("We are grateful to know elite calculator has heped you today!")
+import tkinter as tk
+from tkinter import *
+
+root = tk.Tk()
+root.geometry("170x230")
+root.title("Calculator")
+root.maxsize(170,230)
+root.minsize(170,230)
+
+inp = Entry(root,width=16,borderwidth=3,relief=RIDGE)
+inp.grid(pady=10,row=0,sticky="w",padx=15)
+
+
+def nine():
+        inp.insert("end","9")
+
+def eight():
+        inp.insert("end","8")
+
+def seven():
+        inp.insert("end","7")
+
+def six():
+        inp.insert("end","6")
+
+def five():
+        inp.insert("end","5")
+
+def four():
+        inp.insert("end","4")
+
+def three():
+        inp.insert("end","3")
+
+def two():
+        inp.insert("end","2")
+
+def one():
+        inp.insert("end","1")
+
+def zero():
+        inp.insert("end","0")
+
+def double_zero():
+        inp.insert("end","00")
+
+def dot():
+        inp.insert("end",".")
+
+def plus():
+        inp.insert("end","+")
+
+def minus():
+        inp.insert("end","-")
+
+def mul():
+        inp.insert("end","*")
+
+def divide():
+        inp.insert("end","/")
+
+def modulus():
+        inp.insert("end","%")
+
+def result():
+        if inp.get() == "":
+                inp.insert("end","error")
+        elif inp.get()[0] == "0":
+                inp.delete(0,"end")
+                inp.insert("end","error")
+        else:
+                res = inp.get()
+                res = eval(res)
+                inp.insert("end"," = ")
+                inp.insert("end",res)
+
+def clear():
+        inp.delete(0,"end")
+
+clear = Button(root,text="C",width=2,command=clear,bg="red",fg="white",relief=RIDGE)
+clear.grid(row=0,sticky="w",padx=125)
+nine = Button(text="9",width=2,command=nine,borderwidth=3,relief=RIDGE)
+nine.grid(row=1,sticky="w",padx=15)
+eight = Button(text="8",width=2,command=eight,borderwidth=3,relief=RIDGE)
+eight.grid(row=1,sticky="w",padx=45)
+seven = Button(root,text="7",width=2,command=seven,borderwidth=3,relief=RIDGE)
+seven.grid(row=1,sticky="w",padx=75)
+plus = Button(root,text="+",width=2,command=plus,borderwidth=3,relief=RIDGE)
+plus.grid(row=1,sticky="e",padx=125)
+six = Button(text="6",width=2,command=six,borderwidth=3,relief=RIDGE)
+six.grid(row=2,sticky="w",padx=15,pady=5)
+five = Button(text="5",width=2,command=five,borderwidth=3,relief=RIDGE)
+five.grid(row=2,sticky="w",padx=45,pady=5)
+four = Button(root,text="4",width=2,command=four,borderwidth=3,relief=RIDGE)
+four.grid(row=2,sticky="w",padx=75,pady=5)
+minus = Button(root,text="-",width=2,command=minus,borderwidth=3,relief=RIDGE)
+minus.grid(row=2,sticky="e",padx=125,pady=5)
+three = Button(text="3",width=2,command=three,borderwidth=3,relief=RIDGE)
+three.grid(row=3,sticky="w",padx=15,pady=5)
+two = Button(text="2",width=2,command=two,borderwidth=3,relief=RIDGE)
+two.grid(row=3,sticky="w",padx=45,pady=5)
+one = Button(root,text="1",width=2,command=one,borderwidth=3,relief=RIDGE)
+one.grid(row=3,sticky="w",padx=75,pady=5)
+multiply = Button(root,text="*",width=2,command=mul,borderwidth=3,relief=RIDGE)
+multiply.grid(row=3,sticky="e",padx=125,pady=5)
+zero = Button(text="0",width=2,command=zero,borderwidth=3,relief=RIDGE)
+zero.grid(row=4,sticky="w",padx=15,pady=5)
+double_zero = Button(text="00",width=2,command=double_zero,borderwidth=3,relief=RIDGE)
+double_zero.grid(row=4,sticky="w",padx=45,pady=5)
+dot = Button(root,text=".",width=2,command=dot,borderwidth=3,relief=RIDGE)
+dot.grid(row=4,sticky="w",padx=75,pady=5)
+divide = Button(root,text="/",width=2,command=divide,borderwidth=3,relief=RIDGE)
+divide.grid(row=4,sticky="e",padx=125,pady=5)
+result = Button(root,text="=",width=10,command=result,bg="red",fg="white",borderwidth=3,relief=RIDGE)
+result.grid(row=5,sticky="w",padx=15,pady=5)
+modulus = Button(root,text="%",width=2,command=modulus,borderwidth=3,relief=RIDGE)
+modulus.grid(row=5,sticky="e",padx=125,pady=5)
+
+root.mainloop()
